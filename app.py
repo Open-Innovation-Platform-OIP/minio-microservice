@@ -19,11 +19,16 @@ minioClient = Minio("https://minio-test.cap.jaagalabs.com",
 bucket_name = "test"
 
 
-@app.route("/create_presign_url", methods=['GET'])
+@aoo.route("/")
+def entry():
+    return "working"
+
+
+@app.route("/create_presign_url")
 def presign_url():
 
     trigger_payload = request.json
-    presigned_url = ""
+    presigned_url = "return"
 
     try:
 
