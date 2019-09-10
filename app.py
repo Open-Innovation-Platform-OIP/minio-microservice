@@ -12,11 +12,11 @@ app = Flask(__name__)
 
 PORT = 8080
 
-minioClient = Minio("https://minio-test.cap.jaagalabs.com",
-                    access_key='jaaga',
-                    secret_key='1jaagaLove',
-                    secure=True)
-bucket_name = "test"
+# minioClient = Minio("https://minio-test.cap.jaagalabs.com",
+#                     access_key='jaaga',
+#                     secret_key='1jaagaLove',
+#                     secure=True)
+# bucket_name = "test"
 
 
 @aoo.route("/")
@@ -24,21 +24,21 @@ def entry():
     return "working"
 
 
-@app.route("/create_presign_url")
-def presign_url():
+# @app.route("/create_presign_url")
+# def presign_url():
 
-    trigger_payload = request.json
-    presigned_url = "return"
+#     trigger_payload = request.json
+#     presigned_url = "return"
 
-    try:
+#     try:
 
-        presigned_url = minioClient.presigned_put_object(bucket_name,
-                                                         'video',
-                                                         expires=timedelta(days=3))
-    except ResponseError as err:
-        print(err)
+#         presigned_url = minioClient.presigned_put_object(bucket_name,
+#                                                          'video',
+#                                                          expires=timedelta(days=3))
+#     except ResponseError as err:
+#         print(err)
 
-    return presigned_url
+#     return presigned_url
 
 
 if __name__ == "__main__":
