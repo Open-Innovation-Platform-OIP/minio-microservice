@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 PORT = 8080
 
-minioClient = Minio('http://minio-microservice-test.cap.jaagalabs.com',
+minioClient = Minio("http://minio-test.cap.jaagalabs.com/minio/test/",
                     access_key='jaaga',
                     secret_key='1jaagaLove',
                     secure=True)
