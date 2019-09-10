@@ -24,23 +24,24 @@ def entry():
     return "working"
 
 
-@app.route("/create_presign_url", methods=['POST'])
+@app.route("/create_presigned_url", methods=['POST'])
 def presign_url():
 
-    trigger_payload = request.json
+    req = request.json
+    file_name = req["file_name"]
     presigned_url = ""
 
     try:
 
         presigned_url = minioClient.presigned_put_object(bucket_name,
-                                                         'video',
+                                                         file_name,
                                                          expires=timedelta(days=3))
     except ResponseError as err:
         print(err)
 
     result = {
-        "test": "working",
-        "url": presigned_url
+        "status": "worked",
+        "presigned_url": presigned_url
     }
 
     return jsonify(result)
