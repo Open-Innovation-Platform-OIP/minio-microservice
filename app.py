@@ -39,7 +39,12 @@ def presign_url():
         print(err)
     print("presigned url", presigned_url)
 
-    return jsonify(presigned_url)
+    obj = {
+        "test": "working",
+        "url": presigned_url
+    }
+
+    return jsonify(obj)
 
 
 if __name__ == "__main__":
