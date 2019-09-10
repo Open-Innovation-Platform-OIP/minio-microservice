@@ -37,6 +37,7 @@ def presign_url():
                                                          expires=timedelta(days=3))
     except ResponseError as err:
         print(err)
+    print("presigned url", presigned_url)
 
     return jsonify(presigned_url)
 
