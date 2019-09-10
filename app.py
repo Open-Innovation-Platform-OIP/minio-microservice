@@ -19,7 +19,7 @@ PORT = 8080
 # bucket_name = "test"
 
 
-@aoo.route("/")
+@app.route("/")
 def entry():
     return "working"
 
