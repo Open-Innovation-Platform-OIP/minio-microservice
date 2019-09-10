@@ -38,7 +38,7 @@ def presign_url():
     except ResponseError as err:
         print(err)
 
-    return presigned_url
+    return jsonify(presigned_url)
 
 
 if __name__ == "__main__":
