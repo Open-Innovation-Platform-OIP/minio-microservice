@@ -28,7 +28,7 @@ def entry():
 def presign_url():
 
     trigger_payload = request.json
-    presigned_url = "return"
+    presigned_url = ""
 
     try:
 
