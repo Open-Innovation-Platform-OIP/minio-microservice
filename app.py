@@ -24,7 +24,7 @@ def entry():
     return "working"
 
 
-@app.route("/create_presign_url")
+@app.route("/create_presign_url", methods=['POST'])
 def presign_url():
 
     trigger_payload = request.json
