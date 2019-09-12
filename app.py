@@ -51,6 +51,40 @@ def presign_url():
     return result
 
 
+@app.route("/get_url", methods=['POST'])
+def get_presigned_url():
+    req = request.json
+    file_data = req["file_data"].split("/")
+    bucket_name = file_data[0]
+    file_name = file_data[1]
+    url = ""
+
+    try:
+        url = minioClient.presigned_get_object(
+        bucket_name, file_name, expires=timedelta(days=2)))
+# Response error is still possible since internally presigned does get bucket location.
+    except ResponseError as err:
+        print(err)
+     if url:
+
+        result={
+            "status": "Success",
+            "url": url
+        }
+        result = jsonify(result)
+        result.status_code = 200
+    else:
+        result = {
+            "status": "Error,could not generate a url"
+        }
+        result = jsonify(result)
+        result.status_code = 404
+
+    return result
+
+
+
+
 if __name__ == "__main__":
     # app.run(debug=True)
     serve(app, listen='*:{}'.format(str(PORT)))
