@@ -51,39 +51,37 @@ def presign_url():
     return result
 
 
-@app.route("/get_url")
-def get_presigned_url():
-    req = request.json
-    file_data = req["file_data"].split("/")
-    bucket_name = file_data[0]
-    file_name = file_data[1]
-    url_presigned = ""
+# @app.route("/get_url")
+# def get_presigned_url():
+#     req = request.json
+#     file_data = req["file_data"].split("/")
+#     bucket_name = file_data[0]
+#     file_name = file_data[1]
+#     url_presigned = ""
 
-    try:
-        print(minioClient.presigned_get_object(bucket_name, file_name, expires=timedelta(days=2))))
-# Response error is still possible since internally presigned does get bucket location.
-    except ResponseError as err:
+#     try:
+#         print(minioClient.presigned_get_object(bucket_name, file_name, expires=timedelta(days=2))))
+# # Response error is still possible since internally presigned does get bucket location.
+#     except ResponseError as err:
 
-        print(err)
-    if url_presigned:
-
-
-        result={
-            "status": "Success",
-            "url": url_presigned
-        }
-        result = jsonify(result)
-        result.status_code = 200
-    else:
-        result = {
-            "status": "Error,could not generate a url"
-        }
-        result = jsonify(result)
-        result.status_code = 404
-
-    return result
+#         print(err)
+#     if url_presigned:
 
 
+#         result={
+#             "status": "Success",
+#             "url": url_presigned
+#         }
+#         result = jsonify(result)
+#         result.status_code = 200
+#     else:
+#         result = {
+#             "status": "Error,could not generate a url"
+#         }
+#         result = jsonify(result)
+#         result.status_code = 404
+
+#     return result
 
 
 if __name__ == "__main__":
