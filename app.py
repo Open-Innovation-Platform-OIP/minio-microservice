@@ -64,7 +64,8 @@ def get_presigned_url():
 # Response error is still possible since internally presigned does get bucket location.
     except ResponseError as err:
         print(err)
-     if url:
+    if url:
+
 
         result={
             "status": "Success",
