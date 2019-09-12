@@ -60,8 +60,7 @@ def get_presigned_url():
     url = ""
 
     try:
-        url = minioClient.presigned_get_object(
-        bucket_name, file_name, expires=timedelta(days=2)))
+        url = minioClient.presigned_get_object(bucket_name, file_name, expires=timedelta(days=2)))
 # Response error is still possible since internally presigned does get bucket location.
     except ResponseError as err:
         print(err)
