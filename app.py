@@ -11,10 +11,7 @@ app = Flask(__name__)
 
 PORT = 8080
 
-# minioClient = Minio("minio-test.cap.jaagalabs.com",
-#                     access_key='jaaga',
-#                     secret_key='1jaagaLove',
-#                     secure=True)
+
 minioClient = Minio(os.environ['MINIO_HTTPS_ENDPOINT'], access_key=os.environ['MINIO_ACCESS_KEY'],
                     secret_key=os.environ['MINIO_SECRET_KEY'], secure=True)
 bucket_name = "test"
@@ -30,7 +27,7 @@ def presign_url():
     try:
 
         presigned_url = minioClient.presigned_put_object(bucket_name,
-                                                         file_name,
+                                                         file_nam,
                                                          expires=timedelta(days=3))
     except ResponseError as err:
         print(err)
