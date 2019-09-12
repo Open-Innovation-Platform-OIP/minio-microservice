@@ -27,7 +27,7 @@ def presign_url():
     try:
 
         presigned_url = minioClient.presigned_put_object(bucket_name,
-                                                         file_nam,
+                                                         file_name,
                                                          expires=timedelta(days=3))
     except ResponseError as err:
         print(err)
