@@ -15,7 +15,8 @@ PORT = 8080
 #                     access_key='jaaga',
 #                     secret_key='1jaagaLove',
 #                     secure=True)
-minioClient = Minio(os.environ['MINIO_HTTPS_ENDPOINT'], access_key=os.environ['MINIO_ACCESS_KEY'], secret_key=os.environ['MINIO_SECRET_KEY'], secure: True)
+minioClient = Minio(os.environ['MINIO_HTTPS_ENDPOINT'], access_key=os.environ['MINIO_ACCESS_KEY'],
+                    secret_key=os.environ['MINIO_SECRET_KEY'], secure=True)
 bucket_name = "test"
 
 
