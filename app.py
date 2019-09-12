@@ -59,15 +59,15 @@ def get_presigned_url():
     file_name = file_data[1]
     url_presigned = ""
 
-    print(minioClient.presigned_get_object(bucket_name, file_name, expires=timedelta(days=2))))
+    url_presigned = minioClient.presigned_get_object(
+        bucket_name, file_name, expires=timedelta(days=2))
 # # Response error is still possible since internally presigned does get bucket location.
 #     except ResponseError as err:
 
 #         print(err)
     if url_presigned:
 
-
-        result={
+        result = {
             "status": "Success",
             "url": url_presigned
         }
