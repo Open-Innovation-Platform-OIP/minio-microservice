@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import json
 from waitress import serve
 from datetime import timedelta
-
 import os
 from minio import Minio
 from minio.error import ResponseError
@@ -12,16 +11,12 @@ app = Flask(__name__)
 
 PORT = 8080
 
-minioClient = Minio("minio-test.cap.jaagalabs.com",
-                    access_key='jaaga',
-                    secret_key='1jaagaLove',
-                    secure=True)
+# minioClient = Minio("minio-test.cap.jaagalabs.com",
+#                     access_key='jaaga',
+#                     secret_key='1jaagaLove',
+#                     secure=True)
+minioClient = Minio(os.environ['MINIO_HTTPS_ENDPOINT'], access_key=os.environ['MINIO_ACCESS_KEY'], secret_key=os.environ['MINIO_SECRET_KEY'], secure: True)
 bucket_name = "test"
-
-
-@app.route("/")
-def entry():
-    return "working"
 
 
 @app.route("/create_presigned_url", methods=['POST'])
@@ -39,12 +34,22 @@ def presign_url():
     except ResponseError as err:
         print(err)
 
-    result = {
-        "status": "worked",
-        "presigned_url": presigned_url
-    }
+    if presigned_url:
 
-    return jsonify(result)
+        result = {
+            "status": "Success",
+            "presigned_url": presigned_url
+        }
+        result = jsonify(results)
+        result.status_code = 200
+    else:
+        result = {
+            "status": "Error,could not generate a url"
+        }
+        result = jsonify(results)
+        result.status_code = 404
+
+    return result
 
 
 if __name__ == "__main__":
