@@ -41,13 +41,13 @@ def presign_url():
             "status": "Success",
             "presigned_url": presigned_url
         }
-        result = jsonify(results)
+        result = jsonify(result)
         result.status_code = 200
     else:
         result = {
             "status": "Error,could not generate a url"
         }
-        result = jsonify(results)
+        result = jsonify(result)
         result.status_code = 404
 
     return result
