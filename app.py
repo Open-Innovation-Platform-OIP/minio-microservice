@@ -14,14 +14,15 @@ PORT = 8080
 
 minioClient = Minio(os.environ['MINIO_HTTPS_ENDPOINT'], access_key=os.environ['MINIO_ACCESS_KEY'],
                     secret_key=os.environ['MINIO_SECRET_KEY'], secure=True)
-bucket_name = "test"
 
 
 @app.route("/create_presigned_url", methods=['POST'])
 def presign_url():
 
     req = request.json
-    file_name = req["file_name"]
+    file_data = req["file_data"].split("/")
+    bucket_name = file_data[0]
+    file_name = file_data[1]
     presigned_url = ""
 
     try:
