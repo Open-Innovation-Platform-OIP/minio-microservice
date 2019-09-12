@@ -51,7 +51,7 @@ def presign_url():
     return result
 
 
-@app.route("/get_url", methods=['POST'])
+@app.route("/get_url")
 def get_presigned_url():
     req = request.json
     file_data = req["file_data"].split("/")
@@ -63,6 +63,7 @@ def get_presigned_url():
         print(minioClient.presigned_get_object(bucket_name, file_name, expires=timedelta(days=2))))
 # Response error is still possible since internally presigned does get bucket location.
     except ResponseError as err:
+
         print(err)
     if url_presigned:
 
