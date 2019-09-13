@@ -27,8 +27,10 @@ def presign_url():
     file_data = req["file_data"].split("/")
     jwt_token = req["token"]
 
-    print(jwt.decode(jwt_token, 'KECbbhlLlqZaoJyqBARhbSwxkCHoTmTh',
-                     algorithms=['HS256']))
+    is_verified = jwt.decode(jwt_token, 'KECbbhlLlqZaoJyqBARhbSwxkCHoTmTh',
+                             algorithms=['HS256'])
+    if is_verified:
+        return "working"
 
     bucket_name = file_data[0]
     file_name = file_data[1]
