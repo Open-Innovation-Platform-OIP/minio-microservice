@@ -25,7 +25,8 @@ def presign_url():
 
     req = request.json
     file_data = req["file_data"].split("/")
-    jwt_token = request.headers['Authorization'].split(" ")[1]
+    jwt_token = request.headers['Authorization']
+    print("jwt token", jwt_token)
 
     try:
 
