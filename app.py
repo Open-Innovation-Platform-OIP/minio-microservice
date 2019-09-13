@@ -34,10 +34,10 @@ def presign_url():
     except:
         pass
 
-    if is_verified:
+    if is_authorized:
         return "working"
     else:
-        return str(is_verified)
+        return str(is_authorized)
 
     bucket_name = file_data[0]
     file_name = file_data[1]
