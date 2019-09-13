@@ -26,19 +26,17 @@ def presign_url():
     req = request.json
     file_data = req["file_data"].split("/")
     jwt_token = req["token"]
-    is_authorized = False
 
     try:
 
         is_authorized = jwt.decode(jwt_token, 'KECbbhlLlqZaoJyqBARhbSwxkCHoTmTh',
                                    algorithms=['HS256'])
     except:
-        pass
+        result = {"error": "User not authorized to upload file"}
+        result = jsonify(result)
+        result.status_code = 400
 
-    if is_authorized:
-        return "working"
-    else:
-        return str(is_authorized)
+        return result
 
     bucket_name = file_data[0]
     file_name = file_data[1]
