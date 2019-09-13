@@ -60,7 +60,7 @@ def presign_url():
         result.status_code = 200
     else:
         result = {
-            "status": "Error,could not generate a url"
+            "error": "Could not generate a url"
         }
         result = jsonify(result)
         result.status_code = 404
