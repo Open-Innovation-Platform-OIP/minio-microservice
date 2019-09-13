@@ -5,9 +5,12 @@ from datetime import timedelta
 import os
 from minio import Minio
 from minio.error import ResponseError
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
+
 
 PORT = 8080
 
