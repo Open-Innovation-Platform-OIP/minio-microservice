@@ -29,7 +29,7 @@ def presign_url():
 
     try:
 
-        is_authorized = jwt.decode(jwt_token, 'KECbbhlLlqZaoJyqBARhbSwxkCHoTmTh',
+        is_authorized = jwt.decode(jwt_token, os.environ['ENCRYPTION_KEY'],
                                    algorithms=['HS256'])
     except:
         result = {"error": "User not authorized to upload file"}
