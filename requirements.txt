@@ -2,4 +2,5 @@ Flask
 waitress
 minio
 flask-cors
+pyjwt
 

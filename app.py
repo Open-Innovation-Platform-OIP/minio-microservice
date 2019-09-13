@@ -6,6 +6,7 @@ import os
 from minio import Minio
 from minio.error import ResponseError
 from flask_cors import CORS
+import jwt
 
 
 app = Flask(__name__)
@@ -24,6 +25,11 @@ def presign_url():
 
     req = request.json
     file_data = req["file_data"].split("/")
+    jwt_token = req["token"]
+
+    print(jwt.decode(jwt_token, 'KECbbhlLlqZaoJyqBARhbSwxkCHoTmTh',
+                     algorithms=['HS256']))
+
     bucket_name = file_data[0]
     file_name = file_data[1]
     presigned_url = ""
