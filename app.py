@@ -24,10 +24,10 @@ minioClient = Minio(os.environ['MINIO_HTTPS_ENDPOINT'], access_key=os.environ['M
 def presign_url():
 
     req = request.json
-    token = request.headers
+    token = request.headers["authorization"]
     file_data = req["file_data"].split("/")
     # jwt_token = req.headers.get("authorization")
-    return req
+    return token
     # return jwt_token
 
     try:
