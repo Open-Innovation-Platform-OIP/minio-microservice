@@ -108,7 +108,7 @@ def delete():
     req = request.json
     jwt_token = request.headers["Authorization"]
     file_data = req["file_data"].split("/")
-    status
+    status = ""
 
     try:
 
