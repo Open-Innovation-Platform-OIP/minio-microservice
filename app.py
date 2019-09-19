@@ -129,23 +129,7 @@ def delete():
         minioClient.remove_object(bucket_name, file_name)
     except ResponseError as err:
         print(err)
-        result = {"status": "File could not be deleted"}
-        return jsonify(result)
 
-    # if presigned_url:
-
-    #     result = {
-    #         "status": "Success",
-    #         "presigned_url": presigned_url
-    #     }
-    #     result = jsonify(result)
-    #     result.status_code = 200
-    # else:
-    #     result = {
-    #         "error": "Could not generate a url"
-    #     }
-    #     result = jsonify(result)
-    #     result.status_code = 404
     return jsonify(result)
 
     # return result
