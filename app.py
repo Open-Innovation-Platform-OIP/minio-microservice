@@ -108,7 +108,7 @@ def delete():
     req = request.json
     jwt_token = request.headers["Authorization"]
     file_data = req["file_data"].split("/")
-    status = ""
+    status = "working"
 
     try:
 
@@ -144,7 +144,7 @@ def delete():
     #     }
     #     result = jsonify(result)
     #     result.status_code = 404
-    return status
+    return str(status)
 
     # return result
 
