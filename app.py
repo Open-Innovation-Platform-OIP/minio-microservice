@@ -130,6 +130,7 @@ def delete():
     except ResponseError as err:
         print(err)
         result = {"status": "File could not be deleted"}
+        return jsonify(result)
 
     # if presigned_url:
 
