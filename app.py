@@ -108,7 +108,7 @@ def delete():
     req = request.json
     jwt_token = request.headers["Authorization"]
     file_data = req["file_data"].split("/")
-    status = "working"
+    result = {"status": "File Deleted"}
 
     try:
 
@@ -126,9 +126,10 @@ def delete():
 
     try:
 
-        status = minioClient.remove_object(bucket_name, file_name)
+        minioClient.remove_object(bucket_name, file_name)
     except ResponseError as err:
         print(err)
+        result = {"status": "File could not be deleted"}
 
     # if presigned_url:
 
@@ -144,7 +145,7 @@ def delete():
     #     }
     #     result = jsonify(result)
     #     result.status_code = 404
-    return str(status)
+    return jsonify(result)
 
     # return result
 
