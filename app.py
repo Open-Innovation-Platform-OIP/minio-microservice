@@ -26,9 +26,6 @@ def presign_url():
     req = request.json
     jwt_token = request.headers["Authorization"]
     file_data = req["file_data"].split("/")
-    # jwt_token = req.headers.get("authorization")
-
-    # return jwt_token
 
     try:
 
@@ -104,6 +101,52 @@ def get_presigned_url():
         result.status_code = 404
 
     return result
+
+
+@app.route("/delete_file", methods=['POST'])
+def delete():
+    req = request.json
+    jwt_token = request.headers["Authorization"]
+    file_data = req["file_data"].split("/")
+    status
+
+    try:
+
+        is_authorized = jwt.decode(jwt_token, os.environ['ENCRYPTION_KEY'],
+                                   algorithms=['HS256'])
+    except:
+        result = {"error": "User not authorized to delete file"}
+        result = jsonify(result)
+        result.status_code = 400
+
+        return result
+
+    bucket_name = file_data[0]
+    file_name = file_data[1]
+
+    try:
+
+        status = minioClient.remove_object(bucket_name, file_name)
+    except ResponseError as err:
+        print(err)
+
+    # if presigned_url:
+
+    #     result = {
+    #         "status": "Success",
+    #         "presigned_url": presigned_url
+    #     }
+    #     result = jsonify(result)
+    #     result.status_code = 200
+    # else:
+    #     result = {
+    #         "error": "Could not generate a url"
+    #     }
+    #     result = jsonify(result)
+    #     result.status_code = 404
+    return status
+
+    # return result
 
 
 if __name__ == "__main__":
