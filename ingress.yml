@@ -1,19 +1,19 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: oip-minio-ingress
+  name: oip-minio-prod-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   tls:
   - hosts:
-    - oip-minio.k8s.jaagalabs.com
-    secretName: oip-minio-tls
+    - oip-minio-prod.k8s.jaagalabs.com
+    secretName: oip-minio-prod-tls
   rules:  
-  - host: oip-minio.k8s.jaagalabs.com
+  - host: oip-minio-prod.k8s.jaagalabs.com
     http:
       paths:
       - backend:
-          serviceName: oip-minio
+          serviceName: oip-minio-prod
           servicePort: 80
