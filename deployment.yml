@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oip-minio
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: oip-minio
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oip-minio
+spec:
+  selector:
+    matchLabels:
+      app: oip-minio
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: oip-minio
+    spec:
+      containers:
+      - name: oip-minio
+        image: socialalphaoip/minio-microservice:dev
+        ports:
+        - containerPort: 8080
+        env:
+          - name: MINIO_HTTPS_ENDPOINT
+            value: minio-storage.dev.jaagalabs.com
+          - name: MINIO_ACCESS_KEY
+            value: jaaga
+          - name: MINIO_SECRET_KEY
+            value: 1JaagaLove
+          - name: ENCRYPTION_KEY
+            value: KECbbhlLlqZaoJyqBARhbSwxkCHoTmTh
+---
