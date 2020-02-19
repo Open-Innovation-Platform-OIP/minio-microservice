@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - oip-minio-dev.k8s.jaagalabs.com
+    - oip-minio-dev.oip.dev.code-alpha.org
     secretName: oip-minio-dev-tls
   rules:  
-  - host: oip-minio-dev.k8s.jaagalabs.com
+  - host: oip-minio-dev.oip.dev.code-alpha.org
     http:
       paths:
       - backend:
